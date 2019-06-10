@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom'
 
 const Title = (props) => {
     return (
-        <div>
+        <>
             <h1>
                 {props.name}
             </h1>
-        </div>
+        </>
     )
 }
 
@@ -46,14 +46,14 @@ const Statistics = ({good,neutral,bad}) => {
 
     if(all() === 0) {
         return (
-            <div>
+            <>
                 <Title name="statistics" />
                 No feedback given
-            </div>
+            </>
         )
     } else {
         return (
-            <div>
+            <>
                 <Title name="statistics" />
                 <table>
                     <tbody>
@@ -65,7 +65,7 @@ const Statistics = ({good,neutral,bad}) => {
                         <Statistic text="positive" stat={positive()} extra="%" />
                     </tbody>
                 </table>
-            </div>
+            </>
         )
     }
 }

@@ -3,19 +3,19 @@ import ReactDOM from 'react-dom'
 
 const Title = ({text}) => {
     return (
-        <div>
+        <>
             <h1>
                 {text}
             </h1>
-        </div>
+        </>
     )
 }
 
 const TextDisplay = ({text1, number, text2}) => {
     return(
-        <div>
+        <>
             {text1 + " " + number + " " + text2}
-        </div>
+        </>
     )
 
 }
@@ -45,7 +45,7 @@ const App = (props) => {
     setPoints(copy)
 }
 
-const mostVoted = () => points.indexOf(Math.max.apply(null, points))
+  const mostVoted = () => points.indexOf(Math.max.apply(null, points))
 
   const copy = [...points]
 
@@ -61,6 +61,7 @@ const mostVoted = () => points.indexOf(Math.max.apply(null, points))
       <br></br>
       <Title text="Anecdote with most votes" />
       {props.anecdotes[mostVoted()]}
+      <br></br>
       <TextDisplay text1="has" number={points[mostVoted()]} text2="votes" />
     </div>
   )
