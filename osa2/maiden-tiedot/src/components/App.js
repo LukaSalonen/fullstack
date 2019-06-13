@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import Axios from 'axios';
+import Axios from 'axios'
 import Filter from './Filter'
 import CountryInfo from './CountryInfo'
-import Button from './Button'
 
 const App = () => {
 

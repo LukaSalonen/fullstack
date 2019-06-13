@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Button = ({text, countryName, setFilter}) => {
+const Button = ({countryName, setFilter}) => {
     return(
         <>
-            <button onClick={() => setFilter(countryName)}>{text}</button>
+            <button onClick={() => setFilter(countryName)}>show</button>
         </>
     )
 
