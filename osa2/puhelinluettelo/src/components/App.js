@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import Contacts from './Contact'
 import Filter from './Filter'
-import PersonForm from './PersonForm';
-import Axios from 'axios';
+import PersonForm from './PersonForm'
+import personsService from '../services/persons'
 
 const App = () => {
   const [ persons, setPersons] = useState([]) 
@@ -10,13 +10,15 @@ const App = () => {
   const [ newNumber, setNewNumber ] = useState('')
   const [ currentFilter, setFilter ] = useState('')
 
-useEffect(() => {
-  Axios
-    .get('http://localhost:3001/persons')
+  const updatePersons = () => {
+    personsService
+    .getAll()
     .then(response => {
       setPersons(response.data)
     })
-}, [])
+  }
+
+useEffect(updatePersons, [])
 
 const handleNewName = (event) => {
   setNewName(event.target.value)
@@ -31,11 +33,20 @@ const handleFilter = (event) => {
 
 const addNewContact = (event) => {
   event.preventDefault()
-  if(persons.every(a => a.name !== newName)) {
-    const personObject = {name: newName, number: newNumber}
-    setPersons(persons.concat(personObject))
+  const personObject = {name: newName, number: newNumber}
+
+  if(persons.every(a => a.name !== personObject.name)) {
+    personsService.create(personObject)
+    .then(response => {updatePersons()})
   } else {
-    window.alert(`${newName} is already added to phonebook`)
+    const replace = window.confirm(`${personObject.name} is already added to the phonebook,
+    replace the old number with a new one?`)
+    const old = persons.find(el => el.name === personObject.name)
+    if(replace) {
+      personsService
+      .updatePerson(old.id, personObject)
+      .then(() => updatePersons())
+    }
   }
   setNewName('')
   setNewNumber('')
@@ -53,7 +64,7 @@ const contactsToShow = () => persons.filter(el => el.name.toLowerCase().indexOf(
         text1={newName} handleChange1={handleNewName}
         text2={newNumber} handleChange2={handleNewNumber} />
       <h2>Numbers</h2>
-      <Contacts persons={contactsToShow()} />
+      <Contacts persons={contactsToShow()} setPersons={setPersons} update={updatePersons} />
       
     </div>
   )
