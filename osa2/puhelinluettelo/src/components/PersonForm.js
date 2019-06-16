@@ -13,7 +13,7 @@ const PersonForm = ({addNewContact, text1, handleChange1, text2, handleChange2})
         <>
             <form onSubmit={addNewContact}>
                 <FormField text="name: " stuff={text1} handleChange={handleChange1} />
-                <FormField text="umber: " stuff={text2} handleChange={handleChange2} />
+                <FormField text="number: " stuff={text2} handleChange={handleChange2} />
                 <button type="submit">add</button>
             </form>
         </>
