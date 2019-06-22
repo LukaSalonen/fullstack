@@ -26,6 +26,6 @@ Round 2:
 
 Round 3:
 
-[puhelinluettelo-backend (also production build of the frontend)](https://github.com/LukaSalonen/fullstack/tree/master/osa3/puhelinluettelo-backend)
+[puhelinluettelo-backend (also production build of the front end)](https://github.com/LukaSalonen/fullstack/tree/master/osa3/puhelinluettelo-backend)
 
-[puhelinluettelo-frontend (frontend source)](https://github.com/LukaSalonen/fullstack/tree/master/osa3/puhelinluettelo-frontend)
+[puhelinluettelo-frontend (front end source)](https://github.com/LukaSalonen/fullstack/tree/master/osa3/puhelinluettelo-frontend)
