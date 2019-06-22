@@ -39,7 +39,7 @@ app.get('/api/persons/:id', (req, res, next) => {
                 res.json(person.toJSON())
             }
             else {
-                response.status(404).end()
+                res.status(404).end()
             }
         })
         .catch(error => next(error))
@@ -56,12 +56,6 @@ app.delete('/api/persons/:id', (req, res, next) => {
 app.post('/api/persons', (req, res, next) => {
 
     const body = req.body
-
-    if (!body.name || !body.number) {
-        return res.status(400).json({
-            error: 'content missing'
-        })
-    }
 
     const person = new Person({
         name: body.name,
@@ -93,7 +87,7 @@ app.put('/api/persons/:id', (req, res, next) => {
 const errorHandler = (error, request, response, next) => {
     console.error(error.message)
 
-    if (error.name === 'CastError' && error.kind == 'ObjectId') {
+    if (error.name === 'CastError' && error.kind === 'ObjectId') {
         return response.status(400).send({ error: 'malformatted id' })
     }
     else if (error.name === 'ValidationError') {
