@@ -1,1 +1,1 @@
-[Link to the app](https://boiling-chamber-98513.herokuapp.com/)
+[Link to the app](https://puhelinluettelo0.herokuapp.com/)
