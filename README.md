@@ -31,3 +31,7 @@
 [puhelinluettelo-frontend (front end source)](https://github.com/LukaSalonen/fullstack/tree/master/osa3/puhelinluettelo-frontend)
 
 [Link to the app](https://puhelinluettelo0.herokuapp.com/)
+
+### Round 4: ###
+
+[blogilista](https://github.com/LukaSalonen/fullstack/tree/master/osa4/blogilista)
