@@ -33,7 +33,6 @@ beforeEach(async () => {
     .map(blog => new Blog(blog))
   const promiseArray = blogObjects.map(blog => blog.save())
   await Promise.all(promiseArray)
-
 })
 
 describe('when there is initially some notes saved', () => {
