@@ -1,23 +1,26 @@
 import React, { useState, useEffect } from 'react'
 import blogService from './services/blogs'
-import loginService from './services/login' 
+import loginService from './services/login'
 import LoginForm from './components/LoginForm'
 import BlogList from './components/BlogList'
 import LogoutButton from './components/LogoutButton'
 import BlogForm from './components/BlogForm'
 import Notification from './components/Notification'
 import './App.css'
+import Togglable from './components/Togglable'
 
 const App = () => {
-  const [blogs, setBlogs] = useState([]) 
+  const [blogs, setBlogs] = useState([])
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
-  const [notificationMessage, setNotificationMessage] = useState({text:'', type:''})
+  const [notificationMessage, setNotificationMessage] = useState({ text: '', type: '' })
 
   const updateBlogs = async () => {
     const newBlogs = await blogService.getAll()
-    setBlogs(newBlogs)
+    setBlogs(newBlogs.sort((a, b) => {
+      return b.likes - a.likes
+    }))
   }
 
   const updateUser = () => {
@@ -30,11 +33,11 @@ const App = () => {
   }
 
   const updateNotification = (message, kind) => {
-    setNotificationMessage({text:message, type:kind})
+    setNotificationMessage({ text: message, type: kind })
     setTimeout(() => {
-      setNotificationMessage({text:'', type:''})
+      setNotificationMessage({ text: '', type: '' })
     }, 3000)
-    
+
   }
 
   useEffect(() => {
@@ -64,29 +67,30 @@ const App = () => {
   if (user === null) {
     return (
       <div>
-        <h1>Log in to application</h1>
+        <h1>Blogs</h1>
         <Notification notification={notificationMessage} />
         <LoginForm
-        username={username} password={password}
-        setUsername={setUsername} setPassword={setPassword}
-        handleLogin={handleLogin} />
+          username={username} password={password}
+          setUsername={setUsername} setPassword={setPassword}
+          handleLogin={handleLogin} />
       </div>
     )
   }
-
   return (
     <div>
-      <h1>blogs</h1>
+      <h1>Blogs</h1>
       <Notification notification={notificationMessage} />
       <h3>{user.name} logged in</h3>
       <LogoutButton setUser={setUser} updateNotification={updateNotification} />
       <br></br>
       <br></br>
-      <BlogForm updateBlogs={updateBlogs} updateNotification={updateNotification} />
+      <Togglable buttonLabel="new blog" >
+        <BlogForm updateBlogs={updateBlogs} updateNotification={updateNotification} />
+      </Togglable>
       <br></br>
-      <BlogList blogs={blogs} />
+      <BlogList blogs={blogs} logIn={user} updateBlogs={updateBlogs} />
     </div>
   )
 }
 
-export default App;
+export default App
