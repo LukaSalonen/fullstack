@@ -1,0 +1,10 @@
+PUT http://localhost:3000/api/blogs/5d161209ba266871979105b8
+Content-Type: application/json
+
+{
+    "title": "Paten suuri seikkailu",
+    "author": "Pate PAterson",
+    "url": "NA",
+    "likes": 16,
+    "user": "5d1611900540b4706fb9bdc4"
+}
