@@ -30,7 +30,7 @@ const Blog = ({ blog, logIn, updateBlogs }) => {
     return (
       <div className='blog' onClick={toggleVisibility} >
         <p>{blog.title} {blog.author}</p>
-        <p>{blog.url}</p>
+        <a href={blog.url}>{blog.url}</a>
         <p>{blog.likes} likes </p> <button onClick={addLike}> like </button>
         <p>added by {blog.user.name}</p>
         {(blog.user.username === logIn.username) && <button className="deleteButton" onClick={async () => {
