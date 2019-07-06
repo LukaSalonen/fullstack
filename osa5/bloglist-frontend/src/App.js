@@ -8,13 +8,14 @@ import BlogForm from './components/BlogForm'
 import Notification from './components/Notification'
 import './App.css'
 import Togglable from './components/Togglable'
+import { useField } from './hooks'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
   const [notificationMessage, setNotificationMessage] = useState({ text: '', type: '' })
+  const password = useField('text')
+  const username = useField('text')
 
   const updateBlogs = async () => {
     const newBlogs = await blogService.getAll()
@@ -49,15 +50,16 @@ const App = () => {
     event.preventDefault()
     try {
       const user = await loginService.login({
-        username, password,
+        username: username.value,
+        password: password.value
       })
       window.localStorage.setItem(
         'loggedBloglistUser', JSON.stringify(user)
       )
       blogService.setToken(user.token)
       setUser(user)
-      setUsername('')
-      setPassword('')
+      username.reset()
+      password.reset()
       updateNotification('succesfully logged in', 'success')
     } catch (exception) {
       updateNotification('wrong username or password', 'error')
@@ -71,7 +73,6 @@ const App = () => {
         <Notification notification={notificationMessage} />
         <LoginForm
           username={username} password={password}
-          setUsername={setUsername} setPassword={setPassword}
           handleLogin={handleLogin} />
       </div>
     )

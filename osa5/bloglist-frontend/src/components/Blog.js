@@ -34,8 +34,11 @@ const Blog = ({ blog, logIn, updateBlogs }) => {
         <p>{blog.likes} likes </p> <button onClick={addLike}> like </button>
         <p>added by {blog.user.name}</p>
         {(blog.user.username === logIn.username) && <button className="deleteButton" onClick={async () => {
-          await blogService.deleteBlog(blog.id)
-          updateBlogs()
+          const confirmation = window.confirm(`Are you sure you want to remove blog ${blog.title} by ${blog.author}?`)
+          if ( confirmation ) {
+            await blogService.deleteBlog(blog.id)
+            updateBlogs()
+          }
         }}> delete </button>}
       </div>
     )

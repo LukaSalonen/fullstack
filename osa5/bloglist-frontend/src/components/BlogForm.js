@@ -1,26 +1,27 @@
-import React, { useState } from 'react'
+import React from 'react'
 import blogService from '../services/blogs'
 import PropTypes from 'prop-types'
+import { useField } from '../hooks'
 
 const BlogForm = ({ updateBlogs, updateNotification }) => {
-  const [title, setTitle] = useState('')
-  const [author, setAuthor] = useState('')
-  const [url, setUrl] = useState('')
+  const title = useField('text')
+  const author = useField('text')
+  const url = useField('text')
 
   const handleCreate = async (event) => {
     event.preventDefault()
     try {
       const blogObject = {
-        title,
-        author,
-        url,
+        title: title.value,
+        author: author.value,
+        url: url.value
       }
       const response = await blogService.create(blogObject)
       if (response) {
         updateNotification(`a new blog ${blogObject.title} by ${blogObject.author} added`, 'success')
-        setTitle('')
-        setAuthor('')
-        setUrl('')
+        title.reset()
+        author.reset()
+        url.reset()
         updateBlogs()
       }
     } catch (exception) {
@@ -34,27 +35,15 @@ const BlogForm = ({ updateBlogs, updateNotification }) => {
             <form onSubmit={handleCreate}>
               <div>
                     title:
-                <input
-                  type="text"
-                  value={title}
-                  name="Title"
-                  onChange={({ target }) => setTitle(target.value)} />
+                <input {...title} reset='' />
               </div>
               <div>
               author:
-                <input
-                  type="text"
-                  value={author}
-                  name="Author"
-                  onChange={({ target }) => setAuthor(target.value)} />
+                <input {...author} reset='' />
               </div>
               <div>
                     url:
-                <input
-                  type="text"
-                  value={url}
-                  name="Title"
-                  onChange={({ target }) => setUrl(target.value)} />
+                <input {...url} reset='' />
               </div>
               <button type="submit">create</button>
             </form>
