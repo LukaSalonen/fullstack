@@ -35,3 +35,11 @@
 ### Round 4: ###
 
 [blogilista](https://github.com/LukaSalonen/fullstack/tree/master/osa4/blogilista)
+
+### Round 5: ###
+
+[blogilista-frontend](https://github.com/LukaSalonen/fullstack/tree/master/osa5/bloglist-frontend)
+
+[ultimate-hooks](https://github.com/LukaSalonen/fullstack/tree/master/osa5/custom-hooks)
+
+
