@@ -42,4 +42,7 @@
 
 [ultimate-hooks](https://github.com/LukaSalonen/fullstack/tree/master/osa5/custom-hooks)
 
+### Round 6: ###
 
+[unicafe-redux](https://github.com/LukaSalonen/fullstack/tree/master/osa6/unicafe-redux)
+[redux-anecdotes](https://github.com/LukaSalonen/fullstack/tree/master/osa6/redux-anecdotes)
