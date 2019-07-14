@@ -1,6 +1,6 @@
 import React from 'react'
 import { voteFor } from '../reducers/anecdoteReducer'
-import { setNotification, resetNotification } from '../reducers/notificationReducer'
+import { setNotification } from '../reducers/notificationReducer'
 import { connect } from 'react-redux'
 
 const SingleAnecdote = ({ anecdote, handleClick }) => {
@@ -21,10 +21,7 @@ const AnecdoteList = (props) => {
 
   const handleLike = (anecdote) => {
     props.voteFor(anecdote.id)
-    props.setNotification(`you voted '${anecdote.content}'`)
-    setTimeout(() => {
-      props.resetNotification()
-    }, 5000)
+    props.setNotification(`you voted '${anecdote.content}'`, 1000)
   }
 
   return (
@@ -44,7 +41,6 @@ const anecdotesToShow = ({ anecdotes, filter }) => anecdotes.filter(el => el.con
 
 const mapDispatchToProps = { 
   setNotification,
-  resetNotification,
   voteFor,
  }
 
