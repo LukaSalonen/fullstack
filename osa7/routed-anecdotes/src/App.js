@@ -116,7 +116,7 @@ const Notification = ({message}) => {
   }
   return (
     <div>
-      a new anecdote {message} created!
+      <p></p>a new anecdote {message} created!
     </div>
   )
 }
