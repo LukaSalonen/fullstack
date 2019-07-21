@@ -14,7 +14,7 @@ import { initBlogs } from './reducers/blogReducer'
 import { setNotification, resetNotification } from './reducers/notificationReducer'
 import { createUser, resetUser } from './reducers/userReducer'
 import { setAllUsers } from './reducers/allUsersReducer'
-import { Container } from 'semantic-ui-react'
+import { Container, Menu } from 'semantic-ui-react'
 import {
   BrowserRouter as Router,
   Route, Link
@@ -106,19 +106,29 @@ const App = ({ store }) => {
       </Container>
     )
   }
-  const padding = {
-    paddingRight: 5
-  }
+  //            {store.getState().user.name} logged in
+  // <LogoutButton resetUser={handleResetUser} updateNotification={updateNotification} />
+
   return (
     <Container>
       <Router>
         <div>
-          <div>
-            <Link style={padding} to="/">anecdotes</Link>
-            <Link style={padding} to="/users">users</Link>
-            {store.getState().user.name} logged in
-            <LogoutButton resetUser={handleResetUser} updateNotification={updateNotification} />
-          </div>
+          <Menu inverted>
+            <Menu.Item link color={'red'} active={true} >
+              <Link to="/">anecdotes</Link>
+            </Menu.Item>
+            <Menu.Item link color={'blue'} active={true} >
+              <Link to="/users">users</Link>
+            </Menu.Item>
+            <Menu.Menu position='right'>
+              <Menu.Item color={'violet'} active={true} >
+                Logged in as {store.getState().user.name}
+              </Menu.Item>
+              <Menu.Item name="logout" color={'violet'} active={true} >
+                <LogoutButton resetUser={handleResetUser} updateNotification={updateNotification} />
+              </Menu.Item>
+            </Menu.Menu>
+          </Menu>
           <h1>Blogs</h1>
           <Notification store={store} />
           <Route exact path="/users/:id" render={({ match }) =>
