@@ -14,6 +14,7 @@ import { initBlogs } from './reducers/blogReducer'
 import { setNotification, resetNotification } from './reducers/notificationReducer'
 import { createUser, resetUser } from './reducers/userReducer'
 import { setAllUsers } from './reducers/allUsersReducer'
+import { Container } from 'semantic-ui-react'
 import {
   BrowserRouter as Router,
   Route, Link
@@ -61,6 +62,7 @@ const App = ({ store }) => {
     updateBlogs()
     getAllUsers()
     updateUser()
+    // eslint-disable-next-line
   }, [])
 
   const handleLogin = async (event) => {
@@ -95,20 +97,20 @@ const App = ({ store }) => {
 
   if (store.getState().user === null) {
     return (
-      <div>
+      <Container>
         <h1>Blogs</h1>
         <Notification store={store} />
         <LoginForm
           username={username} password={password}
           handleLogin={handleLogin} />
-      </div>
+      </Container>
     )
   }
   const padding = {
     paddingRight: 5
   }
   return (
-    <div>
+    <Container>
       <Router>
         <div>
           <div>
@@ -130,7 +132,7 @@ const App = ({ store }) => {
           <Route exact path="/users" render={() => <Users store={store} />} />
         </div>
       </Router>
-    </div>
+    </Container>
   )
 }
 

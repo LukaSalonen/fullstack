@@ -1,21 +1,22 @@
 import React from 'react'
+import { Message } from 'semantic-ui-react'
 
 const Notification = ({ store }) => {
   const notification = store.getState().notificationMessage
   if (notification.text === '') {
     return null
   } else if(notification.kind === 'success') {
-    return(
-      <div className="success">
+    return (
+      <Message success>
         {notification.text}
-      </div>
+      </Message>
     )
 
   } else {
-    return(
-      <div className="error">
+    return (
+      <Message negative>
         {notification.text}
-      </div>
+      </Message>
     )
   }
 }

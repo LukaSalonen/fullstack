@@ -1,0 +1,10 @@
+POST http://localhost:3003/api/blogs
+content-type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkhhcnJ1IFBvdHR1ciIsImlkIjoiNWQxOGQ4OTFkOThkM2UxMmE2OWFhZjhiIiwiaWF0IjoxNTYxOTExMTMzfQ.wONct28po8-3ioPZdBtIO1p4OzNsS1980sgC3weSW8E
+
+{
+    "title": "12345",
+    "author": "ABCDE",
+    "url": "UANDMEBBB",
+    "likes": "41"
+}
