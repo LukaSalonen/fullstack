@@ -192,7 +192,7 @@ const resolvers = {
     },
     login: async (root, args) => {
       const user = await User.findOne({ username: args.username })
-      if (!user || args.password !== 'tiilikeissi') {
+      if (!user || args.password !== 'asd') {
         throw new UserInputError("wrong credentials")
       }
 
