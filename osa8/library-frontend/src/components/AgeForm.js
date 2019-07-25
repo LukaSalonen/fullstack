@@ -14,7 +14,6 @@ const AgeForm = (props) => {
 
   const handleChange = selectedOption => {
     setSelection(selectedOption)
-    console.log(`Option selected:`, selectedOption);
   }
 
   const submit = async (e) => {

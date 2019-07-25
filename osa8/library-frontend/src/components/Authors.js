@@ -29,7 +29,7 @@ const Authors = (props) => {
           )}
         </tbody>
       </table>
-      <AgeForm data={props.data} editAge={props.editAge} />
+      {props.token && <AgeForm data={props.data} editAge={props.editAge} />}
     </div>
   )
 }
