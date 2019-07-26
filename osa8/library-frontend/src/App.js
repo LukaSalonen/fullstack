@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Query, Mutation, useMutation, useApolloClient } from 'react-apollo'
+import { Query, Mutation, useMutation, useSubscription, useApolloClient } from 'react-apollo'
 import { gql } from 'apollo-boost'
 import Authors from './components/Authors'
 import Books from './components/Books'
@@ -75,6 +75,17 @@ const LOGIN = gql`
   }
 `
 
+const BOOK_ADDED = gql`
+  subscription {
+    bookAdded {
+      title
+      author {
+        name
+      }
+    }
+  }
+`
+
 
 const App = () => {
   const client = useApolloClient()
@@ -82,6 +93,13 @@ const App = () => {
   const [token, setToken] = useState(null)
 
   const [login] = useMutation(LOGIN)
+
+  useSubscription(BOOK_ADDED, {
+    onSubscriptionData: ({ subscriptionData }) => {
+      const book = subscriptionData.data.bookAdded
+      window.alert(`${book.title} by author ${book.author.name}`)
+    }
+  })
 
   const logout = () => {
     setToken(null)
