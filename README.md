@@ -47,3 +47,17 @@
 [unicafe-redux](https://github.com/LukaSalonen/fullstack/tree/master/osa6/unicafe-redux)
 
 [redux-anecdotes](https://github.com/LukaSalonen/fullstack/tree/master/osa6/redux-anecdotes)
+
+### Round 7: ###
+
+[bloglist-backend](https://github.com/LukaSalonen/fullstack/tree/master/osa7/bloglist-backend)
+
+[bloglist-frontend](https://github.com/LukaSalonen/fullstack/tree/master/osa7/bloglist-frontend)
+
+[routed-anecdotes](https://github.com/LukaSalonen/fullstack/tree/master/osa7/routed-anecdotes)
+
+### Round 8: ###
+
+[library- backend](https://github.com/LukaSalonen/fullstack/tree/master/osa8/graphql-backend)
+
+[library-frontend](https://github.com/LukaSalonen/fullstack/tree/master/osa8/library-frontend)
